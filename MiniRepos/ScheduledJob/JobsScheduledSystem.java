@@ -22,6 +22,7 @@ class JobsScheduledSystem {
 
     public void scheduleTheJob() {
         int currentTime = 0;
+        int num = 0;
         while (!pq.isEmpty()) {
             System.out.println();
             System.out.println("[ Time "+currentTime +"]");
@@ -29,7 +30,7 @@ class JobsScheduledSystem {
                 Job job = pq.poll();
                 System.out.println("Job "+job.getName() + " is Ready");
                 if (!worker.isEmpty()) {
-                    Workers work = worker.get(0);
+                    Workers work = worker.get(num);
                     System.out.println("Worker "+work.getName()+ "is Ready For "+job.getName());
                     work.setStatus("BUSY");
 
@@ -38,6 +39,7 @@ class JobsScheduledSystem {
                     if (isSuccess) {
                         System.out.println(job.getName()+" is Completed!");
                         job.setStatus("COMPLETED");
+                        num++;
                     }
                     else {
                         System.out.println(job.getName()+" is Failed");
